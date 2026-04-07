@@ -1,0 +1,154 @@
+/* ── Base ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: Georgia, serif;
+  min-height: 100vh;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #aaaaaa;
+}
+
+/* ── Layout ── */
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+#sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background-color: #111111;
+  border-right: 1px solid #2a2a2a;
+  padding: 1.5rem 1rem;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-links .nav-link {
+  display: block;
+  color: #aaaaaa;
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.nav-links .nav-link:hover,
+.nav-links .nav-link.active {
+  color: #ffffff;
+  background-color: #2a2a2a;
+}
+
+/* ── Main Content ── */
+#content {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* ── Trending Section ── */
+#trending h1 {
+  margin-bottom: 1.25rem;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.album-card {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.album-cover {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #3a3a3a;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.song-name {
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-bottom: 0.15rem;
+}
+
+.artist-name {
+  font-size: 0.8rem;
+  color: #aaaaaa;
+}
+
+/* ── Playlists Section ── */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.btn-create {
+  border: 1px solid #ffffff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.btn-create:hover {
+  background-color: #2a2a2a;
+}
+
+.playlist-list {
+  list-style: none;
+}
+
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.playlist-name {
+  font-weight: bold;
+}
+
+.playlist-view {
+  font-size: 0.8rem;
+  color: #aaaaaa;
+}
+
+.playlist-view:hover {
+  color: #ffffff;
+}
