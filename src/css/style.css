@@ -8,7 +8,7 @@
 body {
   background-color: #1a1a1a;
   color: #ffffff;
-  font-family: Georgia, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   min-height: 100vh;
 }
 
