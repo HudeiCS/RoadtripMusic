@@ -1,25 +1,49 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Search Songs</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="css/style.css" rel="stylesheet"/>
-    </head>
-    <body>
-        <div id="Wrapper">
-            <nav id="sidebar">
-            <a class="brand" href="index.html">RoadTrip Music</a>
-            <ul class="nav-links">
-            <li><a class="nav-link active" href="index.html">Home</a></li>
-            <li><a class="nav-link" href="explore.html">Explore</a></li>
-            <li><a class="nav-link" href="create.html">Create Playlist</a></li>
-            <li><a class="nav-link" href="playlists.html">My Playlists</a></li>
-            <li><a class="nav-link" href="search.html">Search</a></li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search - RoadTrip Music</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <div id="wrapper">
+
+    <!-- SIDEBAR NAV -->
+    <nav id="sidebar">
+      <a class="brand" href="index.html">RoadTrip Music</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="explore.html">Explore</a></li>
+        <li><a class="nav-link" href="create.html">Create Playlist</a></li>
+        <li><a class="nav-link" href="playlists.html">My Playlists</a></li>
+        <li><a class="nav-link active" href="search.html">Search</a></li>
       </ul>
     </nav>
 
-        </div>
-    </body>
+    <!-- MAIN CONTENT -->
+    <main id="content">
+
+      <h1 style="margin-bottom: 1.5rem;">Search</h1>
+
+      <!-- SEARCH BAR -->
+      <div id="search-bar">
+        <input type="text" id="search-input" placeholder="Search for songs or artists…" />
+        <button id="search-btn">Search</button>
+      </div>
+
+      <!-- RESULTS -->
+      <section id="results">
+        <h2 id="results-heading" style="display:none;"></h2>
+        <div class="album-grid" id="results-grid"></div>
+        <p class="no-results" id="no-results" style="display:none;">No results found.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
