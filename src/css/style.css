@@ -152,3 +152,52 @@ a:hover {
 .playlist-view:hover {
   color: #ffffff;
 }
+
+/* ── Search Page ── */
+#search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+#search-bar input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+}
+
+#search-bar input::placeholder {
+  color: #666666;
+}
+
+#search-bar input:focus {
+  border-color: #555555;
+}
+
+#search-bar button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+#search-bar button:hover {
+  background-color: #2a2a2a;
+}
+
+#results h2 {
+  margin-bottom: 1.25rem;
+}
+
+.no-results {
+  color: #666666;
+  font-size: 0.95rem;
+}
