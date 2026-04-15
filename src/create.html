@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Create Playlist - Travel Music</title>
+  <title>Create Playlist - RoadTrip Music</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
 
   <div id="wrapper">
     <nav id="sidebar">
-      <a class="brand" href="index.html">Travel Music</a>
+      <a class="brand" href="index.html">RoadTrip Music</a>
       <ul class="nav-links">
         <li><a class="nav-link" href="index.html">Home</a></li>
         <li><a class="nav-link active" href="create.html">Create Playlist</a></li>
@@ -25,37 +26,70 @@
     </nav>
 
     <main id="content">
-      <h1 style="margin-bottom: 1.5rem;">Create Playlist</h1>
+      <div id="create-layout">
 
-      <div id="create-form">
+        <!-- LEFT: form -->
+        <div id="create-left">
+          <h1 style="margin-bottom: 1.5rem;">Create Playlist</h1>
 
-        <!-- Playlist details -->
-        <div class="create-section">
-          <label for="playlist-name">Playlist Name</label>
-          <input type="text" id="playlist-name" placeholder="My Road Trip Mix" />
-        </div>
-        <div class="create-section">
-          <label for="playlist-desc">Description (optional)</label>
-          <input type="text" id="playlist-desc" placeholder="Songs for the open road…" />
-        </div>
-
-        <!-- Track search -->
-        <div class="create-section">
-          <label for="track-search-input">Add Tracks</label>
-          <input type="text" id="track-search-input" placeholder="Search for a song…" />
-          <div id="track-results"></div>
-        </div>
-
-        <!-- Selected tracks -->
-        <div class="create-section">
-          <div class="section-header" style="margin-bottom: 0.5rem;">
-            <span id="track-count">0 tracks added</span>
+          <!-- Route section -->
+          <div class="create-section" id="route-section">
+            <div class="route-input-group">
+              <label for="route-start">Starting Point</label>
+              <div class="autocomplete-wrap">
+                <input type="text" id="route-start" placeholder="Enter a city or address…" autocomplete="off"/>
+                <div id="route-start-dropdown" class="autocomplete-dropdown"></div>
+              </div>
+            </div>
+            <div class="route-input-group">
+              <label for="route-end">Destination</label>
+              <div class="autocomplete-wrap">
+                <input type="text" id="route-end" placeholder="Enter a city or address…" autocomplete="off"/>
+                <div id="route-end-dropdown" class="autocomplete-dropdown"></div>
+              </div>
+            </div>
+            <button id="get-route-btn" onclick="getRoute()">Get Route</button>
+            <div id="route-status"></div>
           </div>
-          <div id="selected-tracks"></div>
+
+          <div id="create-form">
+
+            <!-- Playlist details -->
+            <div class="create-section">
+              <label for="playlist-name">Playlist Name</label>
+              <input type="text" id="playlist-name" placeholder="My Road Trip Mix" />
+            </div>
+            <div class="create-section">
+              <label for="playlist-desc">Description (optional)</label>
+              <input type="text" id="playlist-desc" placeholder="Songs for the open road…" />
+            </div>
+
+            <!-- Track search -->
+            <div class="create-section">
+              <label for="track-search-input">Add Tracks</label>
+              <input type="text" id="track-search-input" placeholder="Search for a song…" />
+              <div id="track-results"></div>
+            </div>
+
+            <!-- Selected tracks -->
+            <div class="create-section">
+              <div class="section-header" style="margin-bottom: 0.5rem;">
+                <span id="track-count">0 tracks added</span>
+              </div>
+              <div id="selected-tracks"></div>
+            </div>
+
+            <button id="create-playlist-btn">Create Playlist</button>
+            <p id="create-status"></p>
+          </div>
         </div>
 
-        <button id="create-playlist-btn">Create Playlist</button>
-        <p id="create-status"></p>
+        <!-- RIGHT: map -->
+        <div id="create-right">
+          <h2 class="map-heading">Your Route</h2>
+          <div id="map"></div>
+        </div>
+
       </div>
     </main>
   </div>
@@ -84,8 +118,8 @@
   </div>
 
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
-  <script src="js/spotify.js"></script>
-  <script src="js/player.js"></script>
-  <script src="js/create.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="spotify.js"></script>
+  <script src="route.js"></script>
 </body>
 </html>
