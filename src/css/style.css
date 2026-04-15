@@ -8,7 +8,7 @@
 body {
   background-color: #1a1a1a;
   color: #ffffff;
-  font-family: Georgia, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   min-height: 100vh;
 }
 
@@ -50,6 +50,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding-left: 0;
+  margin-bottom: .3rem;
 }
 
 .nav-links .nav-link {
@@ -120,12 +122,16 @@ a:hover {
 .btn-create {
   border: 1px solid #ffffff;
   padding: 4px 12px;
+  font-weight: normal;
+  background-color: #e07b30;
+  border: 1px solid #e07b30;
   border-radius: 4px;
   font-size: 0.85rem;
 }
 
 .btn-create:hover {
-  background-color: #2a2a2a;
+  background-color: #c46820;
+  border-color: #c46820;
 }
 
 .playlist-list {
@@ -180,17 +186,19 @@ a:hover {
 }
 
 #search-bar button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.25rem 1.2rem;
   border-radius: 6px;
-  border: 1px solid #ffffff;
-  background-color: transparent;
+  font-weight: normal;
+  background-color: #e07b30;
+  border: 1px solid #e07b30;
   color: #ffffff;
   font-size: 0.95rem;
   cursor: pointer;
 }
 
 #search-bar button:hover {
-  background-color: #2a2a2a;
+  background-color: #c46820;
+  border-color: #c46820;
 }
 
 #results h2 {

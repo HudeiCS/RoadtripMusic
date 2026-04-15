@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -19,6 +19,10 @@
         <li><a class="nav-link" href="playlists.html">My Playlists</a></li>
         <li><a class="nav-link" href="search.html">Search</a></li>
       </ul>
+      <div id="auth-controls">
+        <button id="login-btn" onclick="spotifyLogin()">Log in with Spotify</button>
+        <button id="logout-btn" onclick="logout()" style="display:none;">Log out</button>
+      </div>
     </nav>
 
     <main id="content">

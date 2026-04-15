@@ -16,11 +16,14 @@
       <a class="brand" href="index.html">RoadTrip Music</a>
       <ul class="nav-links">
         <li><a class="nav-link" href="index.html">Home</a></li>
-        <li><a class="nav-link" href="explore.html">Explore</a></li>
         <li><a class="nav-link" href="create.html">Create Playlist</a></li>
         <li><a class="nav-link active" href="playlists.html">My Playlists</a></li>
         <li><a class="nav-link" href="search.html">Search</a></li>
       </ul>
+      <div id="auth-controls">
+        <button id="login-btn" onclick="spotifyLogin()">Log in with Spotify</button>
+        <button id="logout-btn" onclick="logout()" style="display:none;">Log out</button>
+      </div>
     </nav>
 
     <!-- MAIN CONTENT -->
@@ -28,7 +31,7 @@
 
       <div class="section-header">
         <h1>My Playlists</h1>
-        <a href="create.html" class="btn-create">+ Create Playlist</a>
+        <a href="create.html" class="btn-create">Create Playlist</a>
       </div>
 
       <!-- PLAYLIST GRID -->
@@ -62,6 +65,8 @@
 
     </main>
   </div>
+  <script src="spotify.js"></script>
+  <script src="playlist.js"></script>
 
 </body>
 </html>
