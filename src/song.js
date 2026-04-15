@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         card.style.cursor = 'pointer';
 
         let image = '';
-        if (track.album.images[0]) {
-            image = track.album.images[0].url;
+        if (t.album.images[0]) {
+            image = t.album.images[0].url;
         }
 
         card.innerHTML = `
