@@ -1,3 +1,32 @@
+/* ── Theme Variables ── */
+:root {
+  --bg:        #ffffff;
+  --bg-side:   #f0f0f0;
+  --bg-raised: #e8e8e8;
+  --bg-hover:  #d8d8d8;
+  --bg-deep:   #f5f5f5;
+  --border:    #dddddd;
+  --border-2:  #bbbbbb;
+  --text:      #1a1a1a;
+  --text-2:    #333333;
+  --text-3:    #555555;
+  --text-4:    #999999;
+}
+
+[data-theme="dark"] {
+  --bg:        #1a1a1a;
+  --bg-side:   #111111;
+  --bg-raised: #2a2a2a;
+  --bg-hover:  #3a3a3a;
+  --bg-deep:   #161616;
+  --border:    #2a2a2a;
+  --border-2:  #444444;
+  --text:      #ffffff;
+  --text-2:    #cccccc;
+  --text-3:    #aaaaaa;
+  --text-4:    #666666;
+}
+
 /* ── Base ── */
 * {
   box-sizing: border-box;
@@ -6,19 +35,39 @@
 }
 
 body {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   min-height: 100vh;
 }
 
 a {
-  color: #ffffff;
+  color: var(--text);
   text-decoration: none;
 }
 
 a:hover {
-  color: #aaaaaa;
+  color: var(--text-3);
+}
+
+/* ── Theme Toggle ── */
+#theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 9999;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+  line-height: 1;
+  color: var(--text);
+}
+
+#theme-toggle:hover {
+  background-color: var(--bg-raised);
 }
 
 /* ── Layout ── */
@@ -31,8 +80,8 @@ a:hover {
 #sidebar {
   width: 220px;
   min-height: 100vh;
-  background-color: #111111;
-  border-right: 1px solid #2a2a2a;
+  background-color: var(--bg-side);
+  border-right: 1px solid var(--border);
   padding: 1.5rem 1rem;
   flex-shrink: 0;
 }
@@ -56,7 +105,7 @@ a:hover {
 
 .nav-links .nav-link {
   display: block;
-  color: #aaaaaa;
+  color: var(--text-3);
   font-size: 0.95rem;
   padding: 6px 10px;
   border-radius: 6px;
@@ -64,8 +113,8 @@ a:hover {
 
 .nav-links .nav-link:hover,
 .nav-links .nav-link.active {
-  color: #ffffff;
-  background-color: #2a2a2a;
+  color: var(--text);
+  background-color: var(--bg-hover);
 }
 
 /* ── Main Content ── */
@@ -87,7 +136,7 @@ a:hover {
 }
 
 .album-card {
-  background-color: #2a2a2a;
+  background-color: var(--bg-raised);
   border-radius: 8px;
   padding: 0.75rem;
 }
@@ -95,7 +144,7 @@ a:hover {
 .album-cover {
   width: 100%;
   aspect-ratio: 1;
-  background-color: #3a3a3a;
+  background-color: var(--bg-hover);
   border-radius: 4px;
   margin-bottom: 0.5rem;
 }
@@ -108,7 +157,7 @@ a:hover {
 
 .artist-name {
   font-size: 0.8rem;
-  color: #aaaaaa;
+  color: var(--text-3);
 }
 
 /* ── Playlists Section ── */
@@ -120,7 +169,6 @@ a:hover {
 }
 
 .btn-create {
-  border: 1px solid #ffffff;
   padding: 4px 12px;
   font-weight: normal;
   background-color: #e07b30;
@@ -143,7 +191,7 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid var(--border);
 }
 
 .playlist-name {
@@ -152,11 +200,11 @@ a:hover {
 
 .playlist-view {
   font-size: 0.8rem;
-  color: #aaaaaa;
+  color: var(--text-3);
 }
 
 .playlist-view:hover {
-  color: #ffffff;
+  color: var(--text);
 }
 
 /* ── Search Page ── */
@@ -170,19 +218,19 @@ a:hover {
   flex: 1;
   padding: 0.6rem 1rem;
   border-radius: 6px;
-  border: 1px solid #2a2a2a;
-  background-color: #2a2a2a;
-  color: #ffffff;
+  border: 1px solid var(--border);
+  background-color: var(--bg-raised);
+  color: var(--text);
   font-size: 1rem;
   outline: none;
 }
 
 #search-bar input::placeholder {
-  color: #666666;
+  color: var(--text-4);
 }
 
 #search-bar input:focus {
-  border-color: #555555;
+  border-color: var(--border-2);
 }
 
 #search-bar button {
@@ -206,7 +254,7 @@ a:hover {
 }
 
 .no-results {
-  color: #666666;
+  color: var(--text-4);
   font-size: 0.95rem;
 }
 
@@ -232,7 +280,7 @@ a:hover {
 
 .map-heading {
   font-size: 1.1rem;
-  color: #cccccc;
+  color: var(--text-2);
   margin-bottom: 0.75rem;
   font-weight: 600;
 }
@@ -241,16 +289,16 @@ a:hover {
   width: 100%;
   height: 500px;
   border-radius: 8px;
-  border: 1px solid #2a2a2a;
-  background-color: #2a2a2a;
+  border: 1px solid var(--border);
+  background-color: var(--bg-raised);
 }
 
 /* ── Route Section ── */
 #route-section {
-  border: 1px solid #2a2a2a;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1rem 1rem 1.25rem;
-  background-color: #161616;
+  background-color: var(--bg-deep);
 }
 
 .route-input-group {
@@ -260,7 +308,7 @@ a:hover {
 .route-input-group label {
   display: block;
   margin-bottom: 0.4rem;
-  color: #cccccc;
+  color: var(--text-2);
   font-size: 0.9rem;
 }
 
@@ -273,8 +321,8 @@ a:hover {
   top: 100%;
   left: 0;
   right: 0;
-  background-color: #2a2a2a;
-  border: 1px solid #444444;
+  background-color: var(--bg-raised);
+  border: 1px solid var(--border-2);
   border-top: none;
   border-radius: 0 0 6px 6px;
   z-index: 1000;
@@ -286,7 +334,7 @@ a:hover {
 .autocomplete-item {
   padding: 0.5rem 0.9rem;
   font-size: 0.88rem;
-  color: #cccccc;
+  color: var(--text-2);
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
@@ -294,8 +342,8 @@ a:hover {
 }
 
 .autocomplete-item:hover {
-  background-color: #3a3a3a;
-  color: #ffffff;
+  background-color: var(--bg-hover);
+  color: var(--text);
 }
 
 #get-route-btn {
@@ -322,13 +370,13 @@ a:hover {
 #route-status {
   margin-top: 0.75rem;
   font-size: 0.88rem;
-  color: #aaaaaa;
+  color: var(--text-3);
 }
 
 .route-summary {
   display: flex;
   align-items: stretch;
-  background-color: #2a2a2a;
+  background-color: var(--bg-raised);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -343,35 +391,34 @@ a:hover {
 
 .route-stat-label {
   font-size: 0.75rem;
-  color: #888888;
+  color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .route-stat-value {
   font-size: 1rem;
-  color: #ffffff;
+  color: var(--text);
   font-weight: 600;
 }
 
 .route-stat-sub {
   font-size: 0.82rem;
-  color: #888888;
+  color: var(--text-3);
   font-weight: normal;
 }
 
 .route-divider {
   width: 1px;
-  background-color: #3a3a3a;
+  background-color: var(--bg-hover);
   flex-shrink: 0;
 }
 
-/*  Create Playlist Page */
-
+/* ── Create Playlist Page ── */
 #auth-controls button {
   background: none;
   border: none;
-  color: #aaaaaa;
+  color: var(--text-3);
   font-size: 0.95rem;
   padding: 6px 10px;
   border-radius: 6px;
@@ -381,8 +428,8 @@ a:hover {
 }
 
 #auth-controls button:hover {
-  color: #ffffff;
-  background-color: #2a2a2a;
+  color: var(--text);
+  background-color: var(--bg-raised);
 }
 
 #create-form {
@@ -396,31 +443,31 @@ a:hover {
 .create-section label {
   display: block;
   margin-bottom: 0.4rem;
-  color: #cccccc;
+  color: var(--text-2);
 }
 
 .create-section input {
   width: 100%;
   padding: 0.6rem 1rem;
   border-radius: 6px;
-  border: 1px solid #2a2a2a;
-  background-color: #2a2a2a;
-  color: #ffffff;
+  border: 1px solid var(--border);
+  background-color: var(--bg-raised);
+  color: var(--text);
   font-size: 1rem;
   outline: none;
 }
 
 .create-section input::placeholder {
-  color: #666666;
+  color: var(--text-4);
 }
 
-.create-section input:focus { 
-  border-color: #555555;
+.create-section input:focus {
+  border-color: var(--border-2);
 }
 
 #track-count {
   font-size: 0.85rem;
-  color: #aaaaaa;
+  color: var(--text-3);
 }
 
 #create-playlist-btn {
@@ -439,7 +486,7 @@ a:hover {
   border-color: #c46820;
 }
 
-/* Single Song Page */
+/* ── Single Song Page ── */
 #song-header {
   display: flex;
   align-items: flex-start;
@@ -464,7 +511,7 @@ a:hover {
 }
 
 #song-artist {
-  color: #aaaaaa;
+  color: var(--text-3);
   font-size: 1.1rem;
 }
 
@@ -473,17 +520,17 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  background-color: #2a2a2a;
+  background-color: var(--bg-raised);
   border-radius: 6px;
 }
 
 #song-bar-name {
-  font-weight: bold;
+  font-weight: normal;
   font-size: 0.95rem;
 }
 
 #song-bar-duration {
-  color: #aaaaaa;
+  color: var(--text-3);
   font-size: 0.9rem;
 }
 
