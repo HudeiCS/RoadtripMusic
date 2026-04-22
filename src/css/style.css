@@ -346,7 +346,8 @@ a:hover {
   color: var(--text);
 }
 
-#get-route-btn {
+#get-route-btn,
+#download-route-btn {
   margin-top: 0.25rem;
   padding: 0.45rem 1.2rem;
   border-radius: 6px;
@@ -357,12 +358,14 @@ a:hover {
   cursor: pointer;
 }
 
-#get-route-btn:hover {
+#get-route-btn:hover,
+#download-route-btn:hover {
   background-color: #c46820;
   border-color: #c46820;
 }
 
-#get-route-btn:disabled {
+#get-route-btn:disabled
+#download-route-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

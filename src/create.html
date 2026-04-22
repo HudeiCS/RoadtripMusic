@@ -49,7 +49,10 @@
                 <div id="route-end-dropdown" class="autocomplete-dropdown"></div>
               </div>
             </div>
-            <button id="get-route-btn" onclick="getRoute()">Get Route</button>
+            <div class="route-buttons">
+              <button id="get-route-btn" onclick="getRoute()">Get Route</button>
+              <button id="download-route-btn" onclick="downloadRoute()" style="display:none;">Download Route</button>
+            </div>
             <div id="route-status"></div>
           </div>
 
