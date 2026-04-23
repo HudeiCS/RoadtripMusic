@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     noResults.style.display = 'none';
     resultsHeading.style.display = 'none';
 
+    searchBtn.textContent = 'Searching...';
+    searchBtn.disabled = true;
+
     const data = await searchSpotify(query);
 
     if (!data || !data.tracks || data.tracks.items.length === 0) {
@@ -74,5 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   resultsGrid.appendChild(card);
 });
+  searchBtn.textContent = 'Search';
+  searchBtn.disabled = false;
   }
 });
