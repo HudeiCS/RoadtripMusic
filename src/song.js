@@ -15,19 +15,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  const artistName = song.artists[0]?.name ?? '';
-  const artistId = song.artists[0]?.id ?? '';
-  const image = song.album.images[0]?.url ?? '';
+  const artistName = song.artists[0].name;
+  const artistId = song.artists[0].id;
+  const image = song.album.images[0].url;
 
-  // Display album art, song title, and artist name
+  // show album art song title and artist name
   document.getElementById('song-image').src = image;
   document.getElementById('song-title').textContent = song.name;
   document.getElementById('song-artist').textContent = song.artists.map(a => a.name).join(', ');
 
-  // Display song name and duration in the bar
+  // show song name and duration in the bar
   document.getElementById('song-bar-name').textContent = song.name;
 
-  // Convert milliseconds to minutes:seconds (e.g. 168000 -> "2:48")
+  // Convert milliseconds to minutes:seconds  168000 -> "2:48"
   const minutes = Math.floor(song.duration_ms / 60000);
   const seconds = Math.floor((song.duration_ms % 60000) / 1000);
   document.getElementById('song-bar-duration').textContent =
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // From: https://developer.spotify.com/documentation/web-api/reference/search
     const data = await searchSpotify(`artist:${artistName}`, 'track', 10);
 
-    if (data?.tracks?.items?.length > 0) {
+    if (data && data.tracks && data.tracks.items.length > 0) {
       const moreGrid = document.getElementById('more-grid');
 
       const otherSongs = data.tracks.items
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         card.className = 'album-card';
         card.style.cursor = 'pointer';
 
-        const tImage = t.album.images[0]?.url ?? '';
+        const tImage = t.album.images[0].url;
 
         card.innerHTML = `
           <img class="album-cover" src="${tImage}" alt="${t.name}" />

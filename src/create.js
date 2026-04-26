@@ -2,7 +2,7 @@ const selectedTracks = [];
  
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('track-search-input');
- 
+
   // Press Enter to search Spotify for tracks
   // From: https://developer.spotify.com/documentation/web-api/reference/search
   input.addEventListener('keydown', async (e) => {
@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = await searchSpotify(query, 'track', 10);
     loadSearchResults(data.tracks.items);
   });
+
+  // Create Playlist button
+  document.getElementById('create-playlist-btn').addEventListener('click', createPlaylist);
 });
 
 
@@ -26,7 +29,7 @@ function loadSearchResults(tracks) {
     const row = document.createElement('div');
     row.className = 'track-result-row';
  
-    const image = t.album.images[2].url;
+    const image = t.album.images[0].url;
  
     row.innerHTML = `
       <img class="track-result-img" src="${image}" alt="${t.name}" />
@@ -45,10 +48,11 @@ function loadSearchResults(tracks) {
 
 function addTrack(track) {
   selectedTracks.push({
+    id: track.id,
     uri: track.uri,
     name: track.name,
     artists: track.artists[0].name,
-    image: track.album.images[2].url,
+    image: track.album.images[0].url,
     duration_ms: track.duration_ms,
   });
  
@@ -63,7 +67,6 @@ function removeTrack(uri) {
   loadSelectedTracks();
 }
  
-
 
 function loadSelectedTracks() {
   const listEl = document.getElementById('selected-tracks');
@@ -90,4 +93,52 @@ function loadSelectedTracks() {
  
     listEl.appendChild(row);
   });
+}
+
+
+// Saves playlist data to LS and go to playlist.html
+function createPlaylist() {
+  const name = document.getElementById('playlist-name').value.trim();
+  const description = document.getElementById('playlist-desc').value.trim();
+  const statusEl = document.getElementById('create-status');
+
+  if (!name) {
+    statusEl.textContent = 'Please enter a playlist name.';
+    return;
+  }
+
+  if (selectedTracks.length === 0) {
+    statusEl.textContent = 'Please add at least one track.';
+    return;
+  }
+
+  // Build a route string from the start/end inputs if filled in
+  const start = document.getElementById('route-start')?.value.trim();
+  const end = document.getElementById('route-end')?.value.trim();
+  let route = '';
+  if (start && end) {
+    route = `${start} → ${end}`;
+  } else if (start) {
+    route = start;
+  } else if (end) {
+    route = end;
+  }
+
+  const playlist = {
+    name,
+    description,
+    route,
+    tracks: selectedTracks,
+    createdAt: Date.now(),
+  };
+
+  // Save to LS playlist.js
+  localStorage.setItem('current_playlist', JSON.stringify(playlist));
+
+  // Append to saved playlists list for the My Playlists page
+  const saved = JSON.parse(localStorage.getItem('saved_playlists') || '[]');
+  saved.push(playlist);
+  localStorage.setItem('saved_playlists', JSON.stringify(saved));
+
+  window.location.href = 'playlist.html';
 }
