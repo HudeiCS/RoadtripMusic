@@ -6,6 +6,7 @@ let map = null;
 let routeLayer = null;
 let startMarker = null;
 let endMarker = null;
+let routeData = null;
 
 // Creates the Leaflet map centered on the US and attaches an OpenStreetMap tile layer
 // From: https://leafletjs.com/reference.html#map
@@ -199,12 +200,39 @@ async function getRoute() {
     localStorage.setItem('tripOrigin', startInput.value);
     localStorage.setItem('tripDestination', endInput.value);
 
+    routeData = {
+      origin: startInput.value,
+      destination: endInput.value,
+      distanceMi: distMi,
+      distanceKm: distKm,
+      durationMin: totalMin,
+      durationFormatted: durationStr,
+      coordinates: coords,
+    };
+    document.getElementById('download-route-btn').style.display = 'inline-block';
+
+
   } catch (err) {
     console.error('Routing error:', err);
+    alert('Failed to fetch. Possible internet connection problem.');
     statusEl.textContent = 'Error fetching route. Check your API key and try again.';
   } finally {
     btn.disabled = false;
   }
+}
+
+function downloadRoute() {
+  if (!routeData) return;
+  const json = JSON.stringify(routeData, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `route-${routeData.origin}-${routeData.destination}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 // Initializes the map and wires up autocomplete on both address inputs on page load

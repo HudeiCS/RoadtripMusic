@@ -158,24 +158,21 @@ function logout() {
 // Attaches the access token to any Spotify API call
 // From: https://developer.spotify.com/documentation/web-api/concepts/access-token
 async function spotifyFetch(endpoint, options = {}) {
-  const token = await getValidToken();
-  console.log('Token:', token);
-  const res = await fetch(`https://api.spotify.com/v1${endpoint}`, {
-    ...options,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      ...(options.headers || {}),
-    },
-  });
-  if (res.status === 204) return null;
-  const text = await res.text();
-  console.log('Response status:', res.status);
-  console.log('Response body:', text);
   try {
-    return JSON.parse(text);
-  } catch {
-    console.error('Failed to parse response:', text);
+    const token = await getValidToken();
+    console.log('Token:', token);
+    const res = await fetch(`https://api.spotify.com/v1${endpoint}`, {
+      ...options,
+     headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      },
+    });
+  return await res.json();
+  }
+  catch (err) {
+    alert('Failed to fetch. Possible internet connection problem.');
     return null;
   }
 }
