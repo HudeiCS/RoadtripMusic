@@ -147,6 +147,8 @@ a:hover {
   background-color: var(--bg-hover);
   border-radius: 4px;
   margin-bottom: 0.5rem;
+  object-fit: cover;
+  display: block;
 }
 
 .song-name {
