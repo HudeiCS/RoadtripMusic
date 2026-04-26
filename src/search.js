@@ -60,20 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <p class="artist-name">${track.artists.map(a => a.name).join(', ')}</p>
   `;
 
-  // Save track info and go to song page when clicked
   card.addEventListener('click', () => {
-  const trackData = {
-    name: track.name,
-    artists: track.artists.map(a => a.name).join(', '),
-    artistId: track.artists[0].id,
-    album: track.album.name,
-    image: image,
-    uri: track.uri,
-    duration_ms: track.duration_ms,
-  };
-  localStorage.setItem('selected_track', JSON.stringify(trackData));
-  window.location.href = 'song.html';
-});
+    window.location.href = `song.html?id=${track.id}`;
+  });
 
   resultsGrid.appendChild(card);
 });

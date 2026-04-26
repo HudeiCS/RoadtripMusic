@@ -147,6 +147,8 @@ a:hover {
   background-color: var(--bg-hover);
   border-radius: 4px;
   margin-bottom: 0.5rem;
+  object-fit: cover;
+  display: block;
 }
 
 .song-name {
@@ -489,6 +491,36 @@ a:hover {
   border-color: #c46820;
 }
 
+/* ── Mobile Hamburger Button ── */
+#menu-btn {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10000;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+#menu-btn:hover {
+  background-color: var(--bg-raised);
+}
+
+/* ── Sidebar Overlay (mobile) ── */
+#sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9000;
+}
+
 /* ── Single Song Page ── */
 #song-header {
   display: flex;
@@ -555,6 +587,88 @@ a:hover {
   border-color: #c46820;
 }
 
+/* ── Responsive: Mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+  /* Show hamburger, hide sidebar by default */
+  #menu-btn {
+    display: block;
+  }
+
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 9500;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    padding-top: 3.5rem;
+  }
+
+  body.sidebar-open #sidebar {
+    transform: translateX(0);
+  }
+
+  body.sidebar-open #sidebar-overlay {
+    display: block;
+  }
+
+  /* Push content down so it clears the hamburger */
+  #content {
+    padding: 1rem;
+    padding-top: 3.5rem;
+  }
+
+  /* 2-column album grid */
+  .album-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Create page: stack form above map */
+  #create-layout {
+    flex-direction: column;
+  }
+
+  #create-left {
+    flex: none;
+    width: 100%;
+  }
+
+  #create-right {
+    position: static;
+    width: 100%;
+  }
+
+  #map {
+    height: 300px;
+  }
+
+  /* Song header: stack vertically */
+  #song-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  #song-header img {
+    width: 150px;
+    height: 150px;
+  }
+
+  /* Player bar: play/pause only */
+  #player-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  #player-progress-wrap,
+  #player-volume-wrap,
+  #player-album-art {
+    display: none;
+  }
 #song-bar-name {
   font-weight: normal;
 }
