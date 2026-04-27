@@ -17,6 +17,8 @@ async function loadTrendingSongs() {
   const grid = document.querySelector('#trending .album-grid');
   if (!grid) return;
 
+  grid.innerHTML = '<p style="color: var(--text-4); font-size: 0.95rem;">Loading…</p>';
+
   const data = await spotifyFetch('/me/top/tracks?time_range=short_term&limit=5');
   if (!data?.items?.length) return;
 
@@ -34,6 +36,8 @@ async function loadTrendingSongs() {
 async function loadTopAlbums() {
   const grid = document.querySelector('#trending-albums .album-grid');
   if (!grid) return;
+
+  grid.innerHTML = '<p style="color: var(--text-4); font-size: 0.95rem;">Loading…</p>';
 
   const data = await spotifyFetch('/me/top/tracks?time_range=medium_term&limit=20');
   if (!data?.items?.length) return;

@@ -877,3 +877,13 @@ a:hover {
   flex-shrink: 0;
 }
 
+#sort-select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-raised);
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
