@@ -500,7 +500,7 @@ a:hover {
   color: var(--text-3);
 }
 
-#create-playlist-btn {
+#create-playlist-btn, #generate-songs-btn {
   margin-top: 1rem;
   padding: 0.6rem 1.6rem;
   border-radius: 6px;
@@ -510,6 +510,7 @@ a:hover {
   color: #ffffff;
   cursor: pointer;
   margin-bottom: 1rem;
+  margin-right: 0.5rem;
 }
 
 #create-playlist-btn:hover {
