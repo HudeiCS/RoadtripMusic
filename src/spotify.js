@@ -3,7 +3,7 @@
 // ── Spotify Config
 const clientId = '281784019c6748359d4b872692a5c9aa';
 const redirectUri = 'http://127.0.0.1:5500/src/index.html';
-const scope = 'streaming user-read-playback-state user-modify-playback-state user-top-read';
+const scope = 'streaming user-read-playback-state user-modify-playback-state user-top-read playlist-read-private playlist-read-collaborative';
 
 // Creates a random string for Spotify login verification
 // From: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow#code-verifier
