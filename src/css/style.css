@@ -651,6 +651,31 @@ a:hover {
     gap: 1rem;
   }
 
+  #playlist-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  #playlist-header-info {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #playlist-cover {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #playlist-cover img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
   #song-header img {
     width: 150px;
     height: 150px;
