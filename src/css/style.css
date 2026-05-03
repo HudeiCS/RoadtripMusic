@@ -672,6 +672,31 @@ a:hover {
     gap: 1rem;
   }
 
+  #playlist-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  #playlist-header-info {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #playlist-cover {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #playlist-cover img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
   #song-header img {
     width: 150px;
     height: 150px;
@@ -887,3 +912,30 @@ a:hover {
   cursor: pointer;
 }
 
+.playlist-delete-btn {
+  display: none;
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.playlist-delete-btn:hover {
+  background: #ff6b6b;
+}
+
+.album-card {
+  position: relative;
+}
+
+.album-card:hover .playlist-delete-btn {
+  display: block;
+}
