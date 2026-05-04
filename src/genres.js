@@ -1,11 +1,11 @@
-const GENRE_PLAYLISTS = {
-  rap:     '2YpHP88aNzVMDPB26K1ClY', 
-  country: '5Fqt8zyIRtYmwIyfoezKc5', 
-  indie:   '2cwwgl3YfjjObL4SU3w4hL', 
-  pop:     '0Kz2CtOubcj2tkr3s9phyS', 
-  beach:   '5qIdB1Qbe6b7ZtYByGcpaE', 
-  desert:  '3VvRLABrEA0ZCtEG57HaMD', 
-  edm:     '51e2JTEMpugEMmqPvXF4MK', 
+const GENRE_SEARCHES = {
+  rap:     'hip hop rap',
+  country: 'country music',
+  indie:   'indie rock',
+  pop:     'pop hits',
+  tropical: 'tropical',
+  desert:  'desert americana southwest',
+  edm:     'electronic dance edm',
 };
 
 const GENRE_POINTS = [
@@ -16,13 +16,13 @@ const GENRE_POINTS = [
 
   { name: 'Atlanta',        lat: 33.7490, lng: -84.3880,  genres: ['rap'] },
   { name: 'Asheville',      lat: 35.5951, lng: -82.5515,  genres: ['indie', 'country'] },
-  { name: 'Charleston',     lat: 32.7765, lng: -79.9311,  genres: ['beach', 'country'] },
-  { name: 'Outer Banks',    lat: 35.5582, lng: -75.4665,  genres: ['beach'] },
-  { name: 'Miami',          lat: 25.7617, lng: -80.1918,  genres: ['beach', 'pop'] },
+  { name: 'Charleston',     lat: 32.7765, lng: -79.9311,  genres: ['tropical', 'country'] },
+  { name: 'Outer Banks',    lat: 35.5582, lng: -75.4665,  genres: ['tropical'] },
+  { name: 'Miami',          lat: 25.7617, lng: -80.1918,  genres: ['tropical', 'pop'] },
 
   { name: 'Memphis',        lat: 35.1495, lng: -90.0490,  genres: ['rap'] },
   { name: 'Nashville',      lat: 36.1627, lng: -86.7816,  genres: ['country'] },
-  { name: 'New Orleans',    lat: 29.9511, lng: -90.0715,  genres: ['rap', 'beach'] },
+  { name: 'New Orleans',    lat: 29.9511, lng: -90.0715,  genres: ['rap', 'tropical'] },
 
   { name: 'Chicago',        lat: 41.8781, lng: -87.6298,  genres: ['rap'] },
   { name: 'Detroit',        lat: 42.3314, lng: -83.0458,  genres: ['rap'] },
@@ -45,8 +45,8 @@ const GENRE_POINTS = [
   { name: 'Phoenix',        lat: 33.4484, lng: -112.0740, genres: ['desert'] },
   { name: 'Las Vegas',      lat: 36.1699, lng: -115.1398, genres: ['edm', 'pop'] },
 
-  { name: 'San Diego',      lat: 32.7157, lng: -117.1611, genres: ['beach'] },
-  { name: 'Los Angeles',    lat: 34.0522, lng: -118.2437, genres: ['rap', 'pop', 'beach'] },
+  { name: 'San Diego',      lat: 32.7157, lng: -117.1611, genres: ['tropical'] },
+  { name: 'Los Angeles',    lat: 34.0522, lng: -118.2437, genres: ['rap', 'pop', 'tropical'] },
   { name: 'San Francisco',  lat: 37.7749, lng: -122.4194, genres: ['indie', 'rap'] },
   { name: 'Portland',       lat: 45.5152, lng: -122.6784, genres: ['indie'] },
 ];
