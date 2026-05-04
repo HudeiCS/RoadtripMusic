@@ -1,4 +1,6 @@
 const selectedTracks = [];
+const imageInput = document.getElementById("playlist-image-input")
+const imagePreview = document.getElementById('playlist-image-preview')
  
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('track-search-input');
@@ -15,6 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = await searchSpotify(query, 'track', 10);
     loadSearchResults(data.tracks.items);
   });
+
+
+  imageInput.addEventListener('change', () => {
+    const file = imageInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        imagePreview.src = e.target.result;
+        imagePreview.style.display = 'block';
+        document.getElementById('remove-image-btn').style.display = 'inline';
+      };
+      reader.readAsDataURL(file);
+    }
+  })
 
   // Create Playlist button
   document.getElementById('create-playlist-btn').addEventListener('click', createPlaylist);
@@ -130,6 +146,7 @@ function createPlaylist() {
     route,
     tracks: selectedTracks,
     createdAt: Date.now(),
+    coverImage: imagePreview.src || null, // incase they dont input
   };
 
   // Save to LS playlist.js
@@ -206,4 +223,11 @@ async function getTracksByGenre(genre, count) {
     });
   }
   return results;
+}
+
+function removeImage() {
+  imageInput.value = '';
+  imagePreview.src = '';
+  imagePreview.style.display = 'none';
+  document.getElementById('remove-image-btn').style.display = 'none';
 }

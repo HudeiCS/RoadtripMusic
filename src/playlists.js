@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.cursor = 'pointer';
 
       card.innerHTML = `
-      <img class="album-cover" src="${playlist.tracks[0].image}" alt="${playlist.name}" />
+      <img class="album-cover" src="${playlist.coverImage || playlist.tracks[0].image}" alt="${playlist.name}" />
       <p class="song-name">${playlist.name}</p>
       <p class="artist-name">${playlist.tracks.length} songs</p>
       <button class="playlist-delete-btn">✕</button>
