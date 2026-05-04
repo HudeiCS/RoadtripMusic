@@ -160,9 +160,8 @@ async function generateSongs() {
   statusEl.textContent = 'Generating songs...';
 
   for (const genre in songCounts) {
-    const playlistId = GENRE_PLAYLISTS[genre];
     const count = songCounts[genre];
-    const tracks = await getTracksFromPlaylist(playlistId, count);
+    const tracks = await getTracksByGenre(genre, count);
 
     for (const track of tracks) {
       selectedTracks.push(track);
@@ -174,20 +173,30 @@ async function generateSongs() {
 }
 
 
-async function getTracksFromPlaylist(playlistId, count) {
-  const data = await spotifyFetch(`/playlists/${playlistId}/tracks?limit=50`);
-  
-  if (!data || !data.items) {
-    return [];
+async function getTracksByGenre(genre, count) {
+  const query = GENRE_SEARCHES[genre];
+  if (!query) return [];
+
+  const collected = [];
+  let offset = 0;
+
+  while (collected.length < count && offset <= 100) {
+    const data = await spotifyFetch(
+      `/search?q=${query}&type=track&limit=10&offset=${offset}`
+    );
+
+    if (!data || !data.tracks || !data.tracks.items || data.tracks.items.length === 0) break;
+
+    collected.push(...data.tracks.items); // Neat little trick almost like the python * operator to unpack an array
+    offset += 10;
   }
 
-  // Shuffle the tracks so we get different ones each time
-  const items = data.items.sort(() => Math.random() - 0.5);
+  collected.sort(() => Math.random() - 0.5);
 
-  const tracks = [];
-  for (let i = 0; i < count && i < items.length; i++) {
-    const t = items[i].track;
-    tracks.push({
+  const results = [];
+  for (let i = 0; i < count && i < collected.length; i++) {
+    const t = collected[i];
+    results.push({
       id: t.id,
       uri: t.uri,
       name: t.name,
@@ -196,5 +205,5 @@ async function getTracksFromPlaylist(playlistId, count) {
       duration_ms: t.duration_ms,
     });
   }
-  return tracks;
+  return results;
 }
