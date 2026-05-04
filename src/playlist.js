@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('playlist-stats').textContent =
     `${playlist.tracks.length} songs ~ ${totalMins} min`;
 
-  // First song is the album art as the playlist cover
+  // First song is the album art as the playlist cover or if they upload an image
   const cover = document.createElement('img');
-  cover.src = playlist.tracks[0].image;
+  cover.src = playlist.coverImage || playlist.tracks[0].image;
   cover.alt = playlist.name;
   document.getElementById('playlist-cover').appendChild(cover);
 
@@ -60,6 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
       playlist.tracks.splice(idx, 1);
       localStorage.setItem('current_playlist', JSON.stringify(playlist));
       row.remove();
+
+      if (playlist.tracks.length === 0) {
+        const saved = JSON.parse(localStorage.getItem('saved_playlists') || '[]');
+        const i = saved.findIndex(p => p.createdAt === playlist.createdAt); // Filters out the playlist that we are currently on
+        saved.splice(i, 1);
+        localStorage.setItem('saved_playlists', JSON.stringify(saved));
+        window.location.href = 'playlists.html';
+      }
     });
 
     listEl.appendChild(row);

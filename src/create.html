@@ -68,6 +68,13 @@
               <input type="text" id="playlist-desc" placeholder="Songs for the open road…" />
             </div>
 
+            <div class="create-section">
+              <label for="playlist-image-input">Playlist Cover Image (optional)</label>
+              <input type="file" id="playlist-image-input" accept="image/*"/>
+              <img id="playlist-image-preview" style="display:none; margin-top: 1rem;" alt="Playlist cover preview"/>
+              <button id="remove-image-btn" style="display:none;" onclick="removeImage()">Remove</button>
+            </div>
+
             <!-- Track search -->
             <div class="create-section">
               <label for="track-search-input">Add Tracks</label>
