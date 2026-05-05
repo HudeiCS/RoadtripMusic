@@ -1,3 +1,16 @@
+let startY = 0;
+
+document.addEventListener('touchstart', e => {
+  startY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientY - startY;
+  if (diff > 80 && window.scrollY === 0) {
+    location.reload();
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.createElement('button');
   btn.id = 'menu-btn';
