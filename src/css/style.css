@@ -805,6 +805,36 @@ a:hover {
   border-color: #c46820;
 }
 
+/* ── Mobile Hamburger Button ── */
+#menu-btn {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10000;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+#menu-btn:hover {
+  background-color: var(--bg-raised);
+}
+
+/* ── Sidebar Overlay ── */
+#sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9000;
+}
+
 /* ── Mobile / Responsive ── */
 @media (max-width: 768px) {
   #menu-btn {
@@ -906,34 +936,4 @@ a:hover {
   #player-album-art {
     display: none;
   }
-}
-
-/* ── Mobile Hamburger Button ── */
-#menu-btn {
-  display: none;
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 10000;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--text);
-  padding: 0.25rem 0.4rem;
-  border-radius: 6px;
-  line-height: 1;
-}
-
-#menu-btn:hover {
-  background-color: var(--bg-raised);
-}
-
-/* ── Sidebar Overlay ── */
-#sidebar-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 9000;
 }
