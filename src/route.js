@@ -1,5 +1,5 @@
 // Sign up for a free API key at https://openrouteservice.org
-const ORS_API_KEY = '***REMOVED***';
+// ORS_API_KEY loaded from config.js
 
 // ── Map state
 let map = null;

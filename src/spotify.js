@@ -1,8 +1,8 @@
 // I put links on each function if yall have any questions about the code
 
 // ── Spotify Config
-const clientId = '281784019c6748359d4b872692a5c9aa';
-const redirectUri = 'http://127.0.0.1:5500/src/index.html';
+const clientId = SPOTIFY_CLIENT_ID;
+const redirectUri = SPOTIFY_REDIRECT_URI;
 const scope = 'streaming user-read-playback-state user-modify-playback-state user-top-read playlist-read-private playlist-read-collaborative';
 
 // Creates a random string for Spotify login verification
@@ -160,7 +160,6 @@ function logout() {
 async function spotifyFetch(endpoint, options = {}) {
   try {
     const token = await getValidToken();
-    console.log('Token:', token);
     const res = await fetch(`https://api.spotify.com/v1${endpoint}`, {
       ...options,
      headers: {

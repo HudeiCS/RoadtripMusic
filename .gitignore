@@ -1,3 +1,6 @@
+# API keys
+src/config.js
+
 # backup files
 *~
 *.bak
