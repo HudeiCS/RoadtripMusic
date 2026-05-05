@@ -70,7 +70,7 @@
 
             <div class="create-section">
               <label for="playlist-image-input">Playlist Cover Image (optional)</label>
-              <input type="file" id="playlist-image-input" accept="image/*"/>
+              <input type="file" id="playlist-image-input" accept="image/jpg, image/jpeg"/>
               <img id="playlist-image-preview" style="display:none; margin-top: 1rem;" alt="Playlist cover preview"/>
               <button id="remove-image-btn" style="display:none;" onclick="removeImage()">Remove</button>
             </div>
@@ -106,31 +106,9 @@
     </main>
   </div>
 
-  <div id="player-bar" style="display:none;">
-    <img id="player-album-art" src="" alt="album art" />
-    <div id="player-track-info">
-      <span id="player-track-name">—</span>
-      <span id="player-artist">—</span>
-    </div>
-    <div id="player-controls">
-      <button onclick="skipPrev()">⏮</button>
-      <button id="player-play-btn" onclick="togglePlay()">▶</button>
-      <button onclick="skipNext()">⏭</button>
-    </div>
-    <div id="player-progress-wrap">
-      <span id="player-current-time">0:00</span>
-      <div id="player-progress-bar"><div id="player-progress-fill"></div></div>
-      <span id="player-duration">0:00</span>
-    </div>
-    <div id="player-volume-wrap">
-      <span>🔈</span>
-      <input type="range" id="volume-slider" min="0" max="100" value="80"
-        oninput="setVolume(this.value)" />
-    </div>
-  </div>
-
   <!-- <script src="https://sdk.scdn.co/spotify-player.js"></script> -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="db.js"></script>
   <script src="genres.js"></script>
   <script src="spotify.js"></script>
   <script src="route.js"></script>

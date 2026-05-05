@@ -1,6 +1,6 @@
 // Handles individual playlist page
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const playlist = JSON.parse(localStorage.getItem('current_playlist'));
 
   if (!playlist) {
@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // First song is the album art as the playlist cover or if they upload an image
   const cover = document.createElement('img');
-  cover.src = playlist.coverImage || playlist.tracks[0].image;
+  const playlistCover = await getPlaylistImage(playlist.createdAt);
+  cover.src = playlistCover || playlist.tracks[0].image;
   cover.alt = playlist.name;
   document.getElementById('playlist-cover').appendChild(cover);
 

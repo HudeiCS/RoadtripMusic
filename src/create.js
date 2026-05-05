@@ -113,7 +113,7 @@ function loadSelectedTracks() {
 
 
 // Saves playlist data to LS and go to playlist.html
-function createPlaylist() {
+async function createPlaylist() {
   const name = document.getElementById('playlist-name').value.trim();
   const description = document.getElementById('playlist-desc').value.trim();
   const statusEl = document.getElementById('create-status');
@@ -146,7 +146,6 @@ function createPlaylist() {
     route,
     tracks: selectedTracks,
     createdAt: Date.now(),
-    coverImage: imagePreview.src || null, // incase they dont input
   };
 
   // Save to LS playlist.js
@@ -156,6 +155,11 @@ function createPlaylist() {
   const saved = JSON.parse(localStorage.getItem('saved_playlists') || '[]');
   saved.push(playlist);
   localStorage.setItem('saved_playlists', JSON.stringify(saved));
+
+  const file = imageInput.files[0];
+  if (file) {
+    await savePlaylistImage(playlist.createdAt, file);
+  }
 
   window.location.href = 'playlist.html';
 }
