@@ -160,17 +160,38 @@ function logout() {
 async function spotifyFetch(endpoint, options = {}) {
   try {
     const token = await getValidToken();
+
+    // Set up the headers
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
+
+    // Add any extra headers the caller passed in
+    if (options.headers) {
+      Object.assign(headers, options.headers);
+    }
+
+    // Make the request
     const res = await fetch(`https://api.spotify.com/v1${endpoint}`, {
-      ...options,
-     headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-        ...(options.headers || {}),
-      },
+      method: options.method || 'GET',
+      headers: headers,
+      body: options.body,
     });
-  return await res.json();
-  }
-  catch (err) {
+
+    // Some Spotify endpoints return nothing on success
+    if (res.status === 204) {
+      return { success: true };
+    }
+
+    // Try to read the response as JSON
+    const text = await res.text();
+    if (text) {
+      return JSON.parse(text);
+    } else {
+      return { success: res.ok };
+    }
+  } catch (err) {
     alert('Failed to fetch. Possible internet connection problem.');
     return null;
   }
@@ -202,3 +223,52 @@ document.addEventListener('DOMContentLoaded', async () => {
   await handleCallback();
   updateAuthUI();
 });
+
+
+// Get all available Spotify devices
+// From: https://developer.spotify.com/documentation/web-api/reference/get-a-users-available-devices
+async function getDevices() {
+  const data = await spotifyFetch('/me/player/devices');
+  return data?.devices || [];
+}
+
+// Transfer playback to a specific device (wakes it up as the active device)
+// From: https://developer.spotify.com/documentation/web-api/reference/transfer-a-users-playback
+async function transferPlayback(deviceId, startPlaying = false) {
+  return spotifyFetch('/me/player', {
+    method: 'PUT',
+    body: JSON.stringify({
+      device_ids: [deviceId],
+      play: startPlaying,
+    }),
+  });
+}
+
+// Play a track, handling the "no active device" case
+// From: https://developer.spotify.com/documentation/web-api/reference/start-a-users-playback
+async function playTrack(trackUri) {
+  const devices = await getDevices();
+
+  if (devices.length === 0) {
+    alert('No devices found, open spotify on a device');
+    return;
+  }
+
+  // Prefer active device over available
+  let device = devices.find(d => d.is_active) || devices[0];
+
+  // If no device is active transfer playback
+  if (!device.is_active) {
+    await transferPlayback(device.id, false);
+    // Give Spotify a moment to register the transfer
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+
+  // play with specific device
+  return spotifyFetch(`/me/player/play?device_id=${device.id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      uris: [trackUri],
+    }),
+  });
+}
