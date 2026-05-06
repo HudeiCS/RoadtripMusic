@@ -41,10 +41,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    await spotifyFetch('/me/player/play', {
-      method: 'PUT',
-      body: JSON.stringify({ uris: [song.uri] }),
-    });
+    console.log('Playing URI:', song.uri);
+    await playTrack(song.uri)
   });
 
   // Load "More by Artist" section

@@ -88,8 +88,5 @@ async function playAll() {
   const playlist = JSON.parse(localStorage.getItem('current_playlist'));
   const uris = playlist.tracks.map(t => t.uri);
 
-  await spotifyFetch('/me/player/play', {
-    method: 'PUT',
-    body: JSON.stringify({ uris }),
-  });
+  await playTrack(uris);
 }

@@ -1,8 +1,6 @@
 // I put links on each function if yall have any questions about the code
 
 // ── Spotify Config
-const clientId = SPOTIFY_CLIENT_ID;
-const redirectUri = SPOTIFY_REDIRECT_URI;
 const scope = 'streaming user-read-playback-state user-modify-playback-state user-top-read playlist-read-private playlist-read-collaborative';
 
 // Creates a random string for Spotify login verification
@@ -257,18 +255,17 @@ async function playTrack(trackUri) {
   // Prefer active device over available
   let device = devices.find(d => d.is_active) || devices[0];
 
-  // If no device is active transfer playback
+  // If no device is active transfer gplayback
   if (!device.is_active) {
     await transferPlayback(device.id, false);
-    // Give Spotify a moment to register the transfer
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 1000));
   }
 
-  // play with specific device
+  // Accept either a single URI string or an array of URIs
+  const uris = Array.isArray(trackUri) ? trackUri : [trackUri];
+
   return spotifyFetch(`/me/player/play?device_id=${device.id}`, {
     method: 'PUT',
-    body: JSON.stringify({
-      uris: [trackUri],
-    }),
+    body: JSON.stringify({ uris }),
   });
 }
