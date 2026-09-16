@@ -8,3 +8,9 @@ src/config.js
 # macOS metadata
 .DS_Store
 ._*
+
+# dependencies
+node_modules/
+
+# environment
+.env
