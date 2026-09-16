@@ -1,5 +1,3 @@
-# project-template
-
 # RoadTrip Music
 A web app that generates Spotify playlists based on your driving route.
 
